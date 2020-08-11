@@ -5,3 +5,39 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+h1 {
+    text-align: center;
+    margin: 2rem 0 6rem;
+}
+
+.table {
+    margin: auto;
+}
+
+.cell {
+    cursor: pointer;
+    text-align: center;
+    width: 6rem;
+    height: 6rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 4rem;
+}
+
+.cell:hover {
+    background-color: #cbffcd;
+}
+
+
+.btn {
+    width: 9rem;
+    height: 2rem;
+    display: block;
+    margin: 3rem auto;
+}
