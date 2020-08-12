@@ -22,6 +22,10 @@ function addMove(cell) {
         cells[index].classList.add("filled");
     }
 }
+
+function changePlayer() {
+    turn = (turn == "X") ? "O" : "X";
+    gameStatus.innerHTML = turnMessage();
 }
 
 reset.onclick = function () {
