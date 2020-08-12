@@ -79,6 +79,9 @@ reset.onclick = function () {
         cells[i].classList.remove("filled");
     }
     turn = "X";
+    gameEnded = false;
+    gameStatus.innerHTML = turnMessage();
+    playersMoves = ["", "", "", "", "", "", "", "", ""];
 }
 
 cells.forEach((cell) => cell.addEventListener('click', addMove));
