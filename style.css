@@ -35,6 +35,9 @@ h1 {
     background-color: #cbffcd;
 }
 
+.filled:hover {
+    background-color: #ffa4a4;
+}
 
 .btn {
     width: 9rem;
