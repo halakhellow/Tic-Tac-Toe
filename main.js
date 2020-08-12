@@ -4,11 +4,11 @@ let gameStatus = document.getElementById("game-status"),
 let turn = "X";
 let cells = Array.from(document.querySelectorAll(".cell"));
 
-let turnMessage = `It's Player ${turn} Turn`,
-    winnerMessage = `Player ${turn} has won`,
-    drawMessage = "it's a draw !";
+let turnMessage = () => `It's player ${turn} turn`,
+    winnerMessage = () => `Player ${turn} has won`,
+    tieMessage = "it's a Tie !";
 
-gameStatus.innerHTML = turnMessage;
+gameStatus.innerHTML = turnMessage();
 
 function isCellEmpty(cell) {
     if (cell.innerHTML == "") return true;
@@ -20,15 +20,8 @@ function addMove(cell) {
     if (isCellEmpty(cells[index])) {
         cells[index].innerHTML = turn;
         cells[index].classList.add("filled");
-        if (turn == "X") turn = "O";
-        else if (turn == "O") turn = "X";
     }
 }
-
-cells.forEach((cell) => cell.addEventListener('click', addMove));
-
-function CheckWinner() {
-
 }
 
 reset.onclick = function () {
@@ -38,3 +31,5 @@ reset.onclick = function () {
     }
     turn = "X";
 }
+
+cells.forEach((cell) => cell.addEventListener('click', addMove));
