@@ -1,7 +1,14 @@
 "use strict"
-let reset = document.getElementById("reset-btn");
+let gameStatus = document.getElementById("game-status"),
+    reset = document.getElementById("reset-btn");
 let turn = "X";
 let cells = Array.from(document.querySelectorAll(".cell"));
+
+let turnMessage = `It's Player ${turn} Turn`,
+    winnerMessage = `Player ${turn} has won`,
+    drawMessage = "it's a draw !";
+
+gameStatus.innerHTML = turnMessage;
 
 function isCellEmpty(cell) {
     if (cell.innerHTML == "") return true;
@@ -29,4 +36,5 @@ reset.onclick = function () {
         cells[i].innerHTML = "";
         cells[i].classList.remove("filled");
     }
+    turn = "X";
 }
