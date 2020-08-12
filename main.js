@@ -1,7 +1,9 @@
 "use strict"
 let gameStatus = document.getElementById("game-status"),
     reset = document.getElementById("reset-btn");
-let turn = "X";
+let turn = "X",
+    gameEnded = false,
+    playersMoves = ["", "", "", "", "", "", "", "", ""];
 let cells = Array.from(document.querySelectorAll(".cell"));
 
 let turnMessage = () => `It's player ${turn} turn`,
@@ -18,9 +20,52 @@ function isCellEmpty(cell) {
 function addMove(cell) {
     let index = cell.target.id.replace("cell", "");
     if (isCellEmpty(cells[index])) {
-        cells[index].innerHTML = turn;
-        cells[index].classList.add("filled");
+        if (gameEnded) return;
+        else {
+            cells[index].innerHTML = turn;
+            cells[index].classList.add("filled");
+            playersMoves[index] = turn;
+            CheckResult();
+        }
     }
+}
+
+let winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+function CheckResult() {
+    let gameWon = false;
+    for (let i = 0; i < 8; i++) {
+        let winningCondition = winningConditions[i];
+        let a = playersMoves[winningCondition[0]],
+            b = playersMoves[winningCondition[1]],
+            c = playersMoves[winningCondition[2]];
+
+        if (a == "" || b == "" || c == "") {
+            continue;
+        }
+        if (a === b && b === c) {
+            gameWon = true;
+            break;
+        }
+    }
+    if (gameWon) {
+        gameEnded = true;
+        return gameStatus.innerHTML = winnerMessage();
+    }
+    if (!playersMoves.includes("")) {
+        gameEnded = true;
+        return gameStatus.innerHTML = tieMessage;
+    }
+    changePlayer();
 }
 
 function changePlayer() {
