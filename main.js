@@ -21,6 +21,7 @@ function addMove(cell) {
             cells[index].innerHTML = currentPlayer;
             cells[index].classList.add("filled");
             playersMoves[index] = currentPlayer;
+            reset.disabled = false;
             CheckResult();
         }
     }
@@ -69,6 +70,8 @@ function changePlayer() {
     gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
 }
 
+if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
+
 reset.onclick = function () {
     for (let i = 0; i < 9; i++) {
         cells[i].innerHTML = "";
@@ -78,6 +81,7 @@ reset.onclick = function () {
     gameEnded = false;
     gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
     playersMoves = ["", "", "", "", "", "", "", "", ""];
+    reset.disabled = true;
 }
 
 cells.forEach((cell) => cell.addEventListener('click', addMove));
