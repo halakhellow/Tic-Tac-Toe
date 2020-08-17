@@ -45,10 +45,16 @@ h1 {
 }
 
 .btn {
+    cursor: pointer;
     width: 9rem;
     height: 2rem;
     display: block;
     margin: 3rem auto;
     font-family: inherit;
     background-color: #ccb3d6;
+}
+
+.btn:disabled {
+    cursor: auto;
+    color: rgba(0, 0, 0, 0.6);
 }
