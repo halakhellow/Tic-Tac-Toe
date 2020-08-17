@@ -24,6 +24,11 @@ function addMove(cell) {
             reset.disabled = false;
             CheckResult();
         }
+    } else {
+        cells[index].classList.add("filled-cell-click");
+        setTimeout(function () {
+            cells[index].classList.remove("filled-cell-click");
+        }, 1000);
     }
 }
 

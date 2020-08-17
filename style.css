@@ -39,6 +39,34 @@ h1 {
     background-color: #ffa4a4;
 }
 
+.filled-cell-click {
+    animation: shake 1s linear 1;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-3px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(3px);
+    }
+}
+
 .status {
     margin: 2rem;
     text-align: center;
