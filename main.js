@@ -1,16 +1,12 @@
 "use strict"
 let gameStatus = document.getElementById("game-status"),
     reset = document.getElementById("reset-btn");
-let turn = "X",
+let currentPlayer = "X",
     gameEnded = false,
     playersMoves = ["", "", "", "", "", "", "", "", ""];
 let cells = Array.from(document.querySelectorAll(".cell"));
 
-let turnMessage = () => `It's player ${turn} turn`,
-    winnerMessage = () => `Player ${turn} has won`,
-    tieMessage = "it's a Tie !";
-
-gameStatus.innerHTML = turnMessage();
+gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
 
 function isCellEmpty(cell) {
     if (cell.innerHTML == "") return true;
@@ -22,9 +18,9 @@ function addMove(cell) {
     if (isCellEmpty(cells[index])) {
         if (gameEnded) return;
         else {
-            cells[index].innerHTML = turn;
+            cells[index].innerHTML = currentPlayer;
             cells[index].classList.add("filled");
-            playersMoves[index] = turn;
+            playersMoves[index] = currentPlayer;
             CheckResult();
         }
     }
@@ -59,18 +55,18 @@ function CheckResult() {
     }
     if (gameWon) {
         gameEnded = true;
-        return gameStatus.innerHTML = winnerMessage();
+        return (gameStatus.innerHTML = `Player ${currentPlayer} has won`);
     }
     if (!playersMoves.includes("")) {
         gameEnded = true;
-        return gameStatus.innerHTML = tieMessage;
+        return (gameStatus.innerHTML = "it's a Tie !");
     }
     changePlayer();
 }
 
 function changePlayer() {
-    turn = (turn == "X") ? "O" : "X";
-    gameStatus.innerHTML = turnMessage();
+    currentPlayer = currentPlayer == "X" ? "O" : "X";
+    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
 }
 
 reset.onclick = function () {
@@ -78,9 +74,9 @@ reset.onclick = function () {
         cells[i].innerHTML = "";
         cells[i].classList.remove("filled");
     }
-    turn = "X";
+    currentPlayer = "X";
     gameEnded = false;
-    gameStatus.innerHTML = turnMessage();
+    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
     playersMoves = ["", "", "", "", "", "", "", "", ""];
 }
 
