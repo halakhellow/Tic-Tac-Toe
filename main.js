@@ -61,6 +61,7 @@ let winningConditions = [
 
 function CheckResult() {
     let gameWon = false;
+    let winCells = [];
     for (let i = 0; i < 8; i++) {
         let winningCondition = winningConditions[i];
         let a = playersMoves[winningCondition[0]],
@@ -72,11 +73,13 @@ function CheckResult() {
         }
         if (a === b && b === c) {
             gameWon = true;
+            winCells = winningCondition;
             break;
         }
     }
     if (gameWon) {
         gameEnded = true;
+        winCells.map((index) => cells[index].classList.add("winner"))
         confetti({
             particleCount: 500,
             spread: 90,
@@ -103,7 +106,7 @@ if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
 reset.onclick = function () {
     for (let i = 0; i < 9; i++) {
         cells[i].innerHTML = "";
-        cells[i].classList.remove("filled");
+        cells[i].classList.remove("filled", "winner");
     }
     gameEnded = false;
     gameStatus.innerHTML = `It's player ${resetPlayer} turn`;

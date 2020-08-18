@@ -43,6 +43,12 @@ h1 {
     animation: shake 1s linear 1;
 }
 
+.winner,
+.winner:hover {
+    color: #bf3a7c;
+    background-color: white;
+}
+
 @keyframes shake {
 
     10%,
