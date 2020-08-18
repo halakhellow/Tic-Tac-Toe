@@ -1,12 +1,28 @@
 "use strict"
 let gameStatus = document.getElementById("game-status"),
+    playerX = document.getElementById("x-btn"),
+    playerO = document.getElementById("o-btn"),
     reset = document.getElementById("reset-btn");
-let currentPlayer = "X",
+let currentPlayer = "",
     gameEnded = false,
     playersMoves = ["", "", "", "", "", "", "", "", ""];
 let cells = Array.from(document.querySelectorAll(".cell"));
 
-gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
+playerX.onclick = function () {
+    playerPick("X");
+}
+playerO.onclick = function () {
+    playerPick("O");
+}
+let resetPlayer = "";
+
+function playerPick(symbol) {
+    resetPlayer = symbol;
+    currentPlayer = symbol;
+    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
+    cells.forEach((cell) => cell.addEventListener('click', addMove));
+}
+
 
 function isCellEmpty(cell) {
     if (cell.innerHTML == "") return true;
@@ -82,11 +98,8 @@ reset.onclick = function () {
         cells[i].innerHTML = "";
         cells[i].classList.remove("filled");
     }
-    currentPlayer = "X";
     gameEnded = false;
-    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
+    gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
     playersMoves = ["", "", "", "", "", "", "", "", ""];
     reset.disabled = true;
 }
-
-cells.forEach((cell) => cell.addEventListener('click', addMove));
