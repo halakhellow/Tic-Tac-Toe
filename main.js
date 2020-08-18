@@ -104,10 +104,10 @@ function changePlayer() {
 if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
 
 reset.onclick = function () {
-    for (let i = 0; i < 9; i++) {
-        cells[i].innerHTML = "";
-        cells[i].classList.remove("filled", "winner");
-    }
+    cells.map((cell) => {
+        cell.innerHTML = "";
+        cell.classList.remove("filled", "winner");
+    });
     gameEnded = false;
     gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
     playersMoves = ["", "", "", "", "", "", "", "", ""];
