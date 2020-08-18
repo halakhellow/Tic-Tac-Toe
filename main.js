@@ -87,11 +87,13 @@ function CheckResult() {
                 y: 0.7
             }
         });
-        return (gameStatus.innerHTML = `Player ${currentPlayer} has won`);
+        gameStatus.classList.add("winner-message");
+        return (gameStatus.innerHTML = `Player ${currentPlayer} has won !`);
     }
     if (!playersMoves.includes("")) {
         gameEnded = true;
-        return (gameStatus.innerHTML = "it's a Tie !");
+        gameStatus.classList.add("tie");
+        return (gameStatus.innerHTML = "it's a Tie !")
     }
     changePlayer();
 }
@@ -110,6 +112,7 @@ reset.onclick = function () {
             cell.classList.remove("filled", "winner");
         });
         gameEnded = false;
+        gameStatus.classList.remove("winner-message", "tie");
         gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
         playersMoves = ["", "", "", "", "", "", "", "", ""];
         reset.disabled = true;

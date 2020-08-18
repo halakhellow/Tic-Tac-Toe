@@ -90,6 +90,27 @@ h1 {
     text-align: center;
 }
 
+.winner-message {
+    font-size: 1.3rem;
+    transition: 2s;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px #bf3a7c;
+    }
+
+    to {
+        text-shadow: 0 0 30px #bf3a7c, 0 0 10px #bf3a7c;
+    }
+}
+
+.tie {
+    font-size: 1.3rem;
+    transition: 2s;
+}
+
 .btn {
     cursor: pointer;
     width: 9rem;
