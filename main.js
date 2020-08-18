@@ -104,12 +104,14 @@ function changePlayer() {
 if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
 
 reset.onclick = function () {
-    cells.map((cell) => {
-        cell.innerHTML = "";
-        cell.classList.remove("filled", "winner");
-    });
-    gameEnded = false;
-    gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
-    playersMoves = ["", "", "", "", "", "", "", "", ""];
-    reset.disabled = true;
+    if ((!gameEnded && confirm("Do you want to start a new game?")) || gameEnded) {
+        cells.map((cell) => {
+            cell.innerHTML = "";
+            cell.classList.remove("filled", "winner");
+        });
+        gameEnded = false;
+        gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
+        playersMoves = ["", "", "", "", "", "", "", "", ""];
+        reset.disabled = true;
+    }
 }
