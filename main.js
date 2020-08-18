@@ -77,6 +77,13 @@ function CheckResult() {
     }
     if (gameWon) {
         gameEnded = true;
+        confetti({
+            particleCount: 500,
+            spread: 90,
+            origin: {
+                y: 0.7
+            }
+        });
         return (gameStatus.innerHTML = `Player ${currentPlayer} has won`);
     }
     if (!playersMoves.includes("")) {
