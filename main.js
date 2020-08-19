@@ -1,16 +1,28 @@
 "use strict"
-let gameStatus = document.getElementById("game-status"),
+let modal = document.getElementById("modal"),
+    gameStatus = document.getElementById("game-status"),
+    playerX = document.getElementById("x-btn"),
+    playerO = document.getElementById("o-btn"),
     reset = document.getElementById("reset-btn");
-let turn = "X",
+let currentPlayer = "",
     gameEnded = false,
     playersMoves = ["", "", "", "", "", "", "", "", ""];
 let cells = Array.from(document.querySelectorAll(".cell"));
 
-let turnMessage = () => `It's player ${turn} turn`,
-    winnerMessage = () => `Player ${turn} has won`,
-    tieMessage = "it's a Tie !";
+playerX.onclick = function () {
+    playerPick("X");
+}
+playerO.onclick = function () {
+    playerPick("O");
+}
 
-gameStatus.innerHTML = turnMessage();
+function playerPick(symbol) {
+    currentPlayer = symbol;
+    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
+    modal.style.display = "none";
+    cells.forEach((cell) => cell.addEventListener('click', addMove));
+}
+
 
 function isCellEmpty(cell) {
     if (cell.innerHTML == "") return true;
@@ -22,11 +34,18 @@ function addMove(cell) {
     if (isCellEmpty(cells[index])) {
         if (gameEnded) return;
         else {
-            cells[index].innerHTML = turn;
+            if (currentPlayer == "O") cells[index].classList.add("player-o");
+            cells[index].innerHTML = currentPlayer;
             cells[index].classList.add("filled");
-            playersMoves[index] = turn;
+            playersMoves[index] = currentPlayer;
+            reset.disabled = false;
             CheckResult();
         }
+    } else {
+        cells[index].classList.add("filled-cell-click");
+        setTimeout(function () {
+            cells[index].classList.remove("filled-cell-click");
+        }, 1000);
     }
 }
 
@@ -43,6 +62,7 @@ let winningConditions = [
 
 function CheckResult() {
     let gameWon = false;
+    let winCells = [];
     for (let i = 0; i < 8; i++) {
         let winningCondition = winningConditions[i];
         let a = playersMoves[winningCondition[0]],
@@ -54,34 +74,49 @@ function CheckResult() {
         }
         if (a === b && b === c) {
             gameWon = true;
+            winCells = winningCondition;
             break;
         }
     }
     if (gameWon) {
         gameEnded = true;
-        return gameStatus.innerHTML = winnerMessage();
+        winCells.map((index) => cells[index].classList.add("winner"))
+        confetti({
+            particleCount: 500,
+            spread: 90,
+            origin: {
+                y: 0.7
+            }
+        });
+        gameStatus.classList.add("winner-message");
+        return (gameStatus.innerHTML = `Player ${currentPlayer} has won ! &#127881`);
     }
     if (!playersMoves.includes("")) {
         gameEnded = true;
-        return gameStatus.innerHTML = tieMessage;
+        gameStatus.classList.add("tie");
+        return (gameStatus.innerHTML = "it's a Tie ! &#128577;")
     }
     changePlayer();
 }
 
 function changePlayer() {
-    turn = (turn == "X") ? "O" : "X";
-    gameStatus.innerHTML = turnMessage();
+    currentPlayer = currentPlayer == "X" ? "O" : "X";
+    gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
 }
+
+if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
 
 reset.onclick = function () {
-    for (let i = 0; i < 9; i++) {
-        cells[i].innerHTML = "";
-        cells[i].classList.remove("filled");
+    if ((!gameEnded && confirm("Do you want to start a new game?")) || gameEnded) {
+        cells.map((cell) => {
+            cell.innerHTML = "";
+            cell.classList.remove("filled", "winner", "player-o");
+        });
+        gameEnded = false;
+        modal.style.display = "block";
+        gameStatus.classList.remove("winner-message", "tie");
+        gameStatus.innerHTML = "";
+        playersMoves = ["", "", "", "", "", "", "", "", ""];
+        reset.disabled = true;
     }
-    turn = "X";
-    gameEnded = false;
-    gameStatus.innerHTML = turnMessage();
-    playersMoves = ["", "", "", "", "", "", "", "", ""];
 }
-
-cells.forEach((cell) => cell.addEventListener('click', addMove));
