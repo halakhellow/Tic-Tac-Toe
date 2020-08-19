@@ -7,12 +7,11 @@
 }
 
 body {
-    background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background: linear-gradient(90deg, rgba(202, 168, 245, 1) 0%, rgba(89, 46, 131, 1) 100%);
     font-family: 'Delius Unicase', cursive;
 }
 
 .modal {
-    text-align: center;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -23,29 +22,37 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #230c33eb;
+    color: white;
     margin: 15% auto;
     padding: 20px;
-    border: 2px solid black;
-    width: 30%;
+    width: 25%;
     height: 25%;
 }
 
 .x-btn,
 .o-btn {
-    width: 3rem;
-    height: 3rem;
-    border: 1px solid;
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid black;
     border-radius: 50%;
-    font-size: inherit;
+    font-size: 2rem;
     font-family: inherit;
-    background-color: white;
+    background-color: whitesmoke;
     cursor: pointer;
+}
+
+.o-btn {
+    color: #008a7d;
 }
 
 h1 {
     text-align: center;
     margin: 2rem 0 4rem;
+    color: whitesmoke;
 }
 
 .table {
@@ -53,32 +60,37 @@ h1 {
 }
 
 .cell {
+    color: #000000de;
     cursor: pointer;
     text-align: center;
     width: 6rem;
     height: 6rem;
     border: 2px solid black;
     border-radius: 50%;
-    background-color: white;
+    background-color: whitesmoke;
     font-size: 4rem;
 }
 
 .cell:hover {
-    background-color: #cbffcd;
+    background-color: #a6e6a9;
 }
 
 .filled:hover {
-    background-color: #ffa4a4;
+    background-color: #ffafaf;
 }
 
 .filled-cell-click {
     animation: shake 1s linear 1;
 }
 
+.player-o {
+    color: #008a7d;
+}
+
 .winner,
 .winner:hover {
-    color: #bf3a7c;
-    background-color: white;
+    color: #e11d74;
+    background-color: whitesmoke;
 }
 
 @keyframes shake {
@@ -107,6 +119,7 @@ h1 {
 
 .status {
     margin: 2rem;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -118,11 +131,11 @@ h1 {
 
 @keyframes glow {
     from {
-        text-shadow: 0 0 20px #bf3a7c;
+        text-shadow: 0 0 10px #e11d74;
     }
 
     to {
-        text-shadow: 0 0 30px #bf3a7c, 0 0 10px #bf3a7c;
+        text-shadow: 0 0 30px #e11d74, 0 0 20px #e11d74;
     }
 }
 
@@ -136,7 +149,7 @@ h1 {
     width: 9rem;
     height: 2rem;
     display: block;
-    margin: 3rem auto;
+    margin: auto;
     font-family: inherit;
     background-color: #ccb3d6;
 }
