@@ -110,7 +110,7 @@ reset.onclick = function () {
     if ((!gameEnded && confirm("Do you want to start a new game?")) || gameEnded) {
         cells.map((cell) => {
             cell.innerHTML = "";
-            cell.classList.remove("filled", "winner");
+            cell.classList.remove("filled", "winner", "player-o");
         });
         gameEnded = false;
         modal.style.display = "block";
