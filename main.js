@@ -88,12 +88,12 @@ function CheckResult() {
             }
         });
         gameStatus.classList.add("winner-message");
-        return (gameStatus.innerHTML = `Player ${currentPlayer} has won !`);
+        return (gameStatus.innerHTML = `Player ${currentPlayer} has won ! &#127881`);
     }
     if (!playersMoves.includes("")) {
         gameEnded = true;
         gameStatus.classList.add("tie");
-        return (gameStatus.innerHTML = "it's a Tie !")
+        return (gameStatus.innerHTML = "it's a Tie ! &#128577;")
     }
     changePlayer();
 }
