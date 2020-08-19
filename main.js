@@ -34,6 +34,7 @@ function addMove(cell) {
     if (isCellEmpty(cells[index])) {
         if (gameEnded) return;
         else {
+            if (currentPlayer == "O") cells[index].classList.add("player-o");
             cells[index].innerHTML = currentPlayer;
             cells[index].classList.add("filled");
             playersMoves[index] = currentPlayer;
