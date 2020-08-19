@@ -27,10 +27,10 @@ body {
     align-items: center;
     background-color: #230c33eb;
     color: white;
-    margin: 15% auto;
+    margin: 13rem auto;
     padding: 20px;
-    width: 25%;
-    height: 25%;
+    width: 22rem;
+    height: 10rem;
 }
 
 .x-btn,
