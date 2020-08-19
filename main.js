@@ -1,5 +1,6 @@
 "use strict"
-let gameStatus = document.getElementById("game-status"),
+let modal = document.getElementById("modal"),
+    gameStatus = document.getElementById("game-status"),
     playerX = document.getElementById("x-btn"),
     playerO = document.getElementById("o-btn"),
     reset = document.getElementById("reset-btn");
@@ -14,12 +15,11 @@ playerX.onclick = function () {
 playerO.onclick = function () {
     playerPick("O");
 }
-let resetPlayer = "";
 
 function playerPick(symbol) {
-    resetPlayer = symbol;
     currentPlayer = symbol;
     gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
+    modal.style.display = "none";
     cells.forEach((cell) => cell.addEventListener('click', addMove));
 }
 
@@ -112,8 +112,9 @@ reset.onclick = function () {
             cell.classList.remove("filled", "winner");
         });
         gameEnded = false;
+        modal.style.display = "block";
         gameStatus.classList.remove("winner-message", "tie");
-        gameStatus.innerHTML = `It's player ${resetPlayer} turn`;
+        gameStatus.innerHTML = "";
         playersMoves = ["", "", "", "", "", "", "", "", ""];
         reset.disabled = true;
     }
