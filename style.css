@@ -87,15 +87,17 @@ h1 {
     color: #008a7d;
 }
 
-.winner,
-.winner:hover {
-    color: #e11d74;
-    background-color: whitesmoke;
-}
-
+.win-tie,
 .win-tie:hover {
     background-color: whitesmoke;
     cursor: context-menu;
+    animation: none;
+}
+
+.winner,
+.winner:hover {
+    color: #ab043d;
+    background-color: #f9f3c6;
 }
 
 @keyframes shake {
@@ -136,11 +138,11 @@ h1 {
 
 @keyframes glow {
     from {
-        text-shadow: 0 0 10px #e11d74;
+        text-shadow: 0 0 10px #ab043d;
     }
 
     to {
-        text-shadow: 0 0 30px #e11d74, 0 0 20px #e11d74;
+        text-shadow: 0 0 30px #ab043d, 0 0 20px #ab043d;
     }
 }
 
