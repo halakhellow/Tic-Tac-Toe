@@ -80,6 +80,7 @@ function CheckResult() {
     }
     if (gameWon) {
         gameEnded = true;
+        cells.map((cell) => cell.classList.add("win-tie"));
         winCells.map((index) => cells[index].classList.add("winner"))
         confetti({
             particleCount: 500,
@@ -94,6 +95,7 @@ function CheckResult() {
     if (!playersMoves.includes("")) {
         gameEnded = true;
         gameStatus.classList.add("tie");
+        cells.map((cell) => cell.classList.add("win-tie"));
         return (gameStatus.innerHTML = "it's a Tie ! &#128577;")
     }
     changePlayer();
@@ -110,7 +112,7 @@ reset.onclick = function () {
     if ((!gameEnded && confirm("Do you want to start a new game?")) || gameEnded) {
         cells.map((cell) => {
             cell.innerHTML = "";
-            cell.classList.remove("filled", "winner", "player-o");
+            cell.classList.remove("filled", "winner", "player-o", "win-tie");
         });
         gameEnded = false;
         modal.style.display = "block";
