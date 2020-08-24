@@ -64,7 +64,6 @@ h1 {
 
 .animation span {
   display: inline-block;
-  transition: 0.3s ease-out;
   opacity: 0;
 }
 
