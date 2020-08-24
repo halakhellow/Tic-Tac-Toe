@@ -1,5 +1,6 @@
 "use strict";
 let modal = document.getElementById("modal"),
+  title = document.getElementById("title"),
   gameStatus = document.getElementById("game-status"),
   playerX = document.getElementById("x-btn"),
   playerO = document.getElementById("o-btn"),
@@ -20,6 +21,7 @@ function playerPick(symbol) {
   currentPlayer = symbol;
   gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
   modal.style.display = "none";
+  title.classList.add("animation");
   cells.forEach((cell) => cell.addEventListener("click", addMove));
 }
 
@@ -119,6 +121,7 @@ reset.onclick = function () {
     });
     gameEnded = false;
     modal.style.display = "block";
+    title.classList.remove("animation");
     gameStatus.classList.remove("winner-message", "tie");
     gameStatus.innerHTML = "";
     playersMoves = ["", "", "", "", "", "", "", "", ""];
