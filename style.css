@@ -22,15 +22,19 @@ body {
 }
 
 .modal-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    text-align: center;
     background-color: #230c33eb;
     color: white;
     margin: 13rem auto;
     padding: 20px;
     width: 22rem;
     height: 10rem;
+}
+
+.modal-choose {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .x-btn,
