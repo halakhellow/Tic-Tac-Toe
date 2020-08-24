@@ -109,7 +109,7 @@ function changePlayer() {
 if (playersMoves = ["", "", "", "", "", "", "", "", ""]) reset.disabled = true;
 
 reset.onclick = function () {
-    if ((!gameEnded && confirm("Do you want to start a new game?")) || gameEnded) {
+    if ((!gameEnded && confirm("Data will be lost . Start a new game ?")) || gameEnded) {
         cells.map((cell) => {
             cell.innerHTML = "";
             cell.classList.remove("filled", "winner", "player-o", "win-tie");
