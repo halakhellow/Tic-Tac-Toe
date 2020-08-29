@@ -26,8 +26,7 @@ function playerPick(symbol) {
 }
 
 function isCellEmpty(cell) {
-  if (cell.innerHTML == "") return true;
-  else return false;
+  return cell.innerHTML === "";
 }
 
 function addMove(cell) {
@@ -35,12 +34,12 @@ function addMove(cell) {
   if (isCellEmpty(cells[index])) {
     if (gameEnded) return;
     else {
-      if (currentPlayer == "O") cells[index].classList.add("player-o");
+      if (currentPlayer === "O") cells[index].classList.add("player-o");
       cells[index].innerHTML = currentPlayer;
       cells[index].classList.add("filled");
       playersMoves[index] = currentPlayer;
       reset.disabled = false;
-      CheckResult();
+      checkWinner();
     }
   } else {
     cells[index].classList.add("filled-cell-click");
@@ -61,24 +60,20 @@ let winningConditions = [
   [2, 4, 6],
 ];
 
-function CheckResult() {
+function checkWinner() {
   let gameWon = false;
   let winCells = [];
-  for (let i = 0; i < 8; i++) {
-    let winningCondition = winningConditions[i];
-    let a = playersMoves[winningCondition[0]],
-      b = playersMoves[winningCondition[1]],
-      c = playersMoves[winningCondition[2]];
-
-    if (a == "" || b == "" || c == "") {
-      continue;
-    }
-    if (a === b && b === c) {
+  winningConditions.map((condition) => {
+    let arr = [
+      playersMoves[condition[0]],
+      playersMoves[condition[1]],
+      playersMoves[condition[2]],
+    ];
+    if (arr.every((element) => element === arr[0]) && arr[0] !== "") {
       gameWon = true;
-      winCells = winningCondition;
-      break;
+      winCells = condition;
     }
-  }
+  });
   if (gameWon) {
     gameEnded = true;
     cells.map((cell) => cell.classList.add("win-tie"));
@@ -93,17 +88,19 @@ function CheckResult() {
     gameStatus.classList.add("winner-message");
     return (gameStatus.innerHTML = `Player ${currentPlayer} has won ! &#127881`);
   }
-  if (!playersMoves.includes("")) {
-    gameEnded = true;
-    gameStatus.classList.add("tie");
-    cells.map((cell) => cell.classList.add("win-tie"));
-    return (gameStatus.innerHTML = "it's a Tie ! &#128577;");
-  }
   changePlayer();
+  if (!playersMoves.includes("")) tieResult();
+}
+
+function tieResult() {
+  gameEnded = true;
+  gameStatus.classList.add("tie");
+  cells.map((cell) => cell.classList.add("win-tie"));
+  return (gameStatus.innerHTML = "it's a Tie ! &#128577;");
 }
 
 function changePlayer() {
-  currentPlayer = currentPlayer == "X" ? "O" : "X";
+  currentPlayer = currentPlayer === "X" ? "O" : "X";
   gameStatus.innerHTML = `It's player ${currentPlayer} turn`;
 }
 
