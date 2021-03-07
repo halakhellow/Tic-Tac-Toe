@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@700&display=swap">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@700&display=swap"
+    />
+    <link rel="icon" href="./icon.png" />
+  </head>
 
-<body>
+  <body>
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <h4>Select player :</h4>
-            <div class="modal-choose">
-                <button id="x-btn" class="x-btn">X</button> <span>OR</span> <button id="o-btn" class="o-btn">O</button>
-            </div>
+      <div class="modal-content">
+        <h4>Select player :</h4>
+        <div class="modal-choose">
+          <button id="x-btn" class="x-btn">X</button> <span>OR</span>
+          <button id="o-btn" class="o-btn">O</button>
         </div>
+      </div>
     </div>
     <h1 id="title"><span>Tic</span> <span>Tac</span> <span>Toe</span></h1>
     <table class="table">
-        <tr>
-            <td id="cell0" class="cell"></td>
-            <td id="cell1" class="cell"></td>
-            <td id="cell2" class="cell"></td>
-        </tr>
-        <tr>
-            <td id="cell3" class="cell"></td>
-            <td id="cell4" class="cell"></td>
-            <td id="cell5" class="cell"></td>
-        </tr>
-        <tr>
-            <td id="cell6" class="cell"></td>
-            <td id="cell7" class="cell"></td>
-            <td id="cell8" class="cell"></td>
-        </tr>
+      <tr>
+        <td id="cell0" class="cell"></td>
+        <td id="cell1" class="cell"></td>
+        <td id="cell2" class="cell"></td>
+      </tr>
+      <tr>
+        <td id="cell3" class="cell"></td>
+        <td id="cell4" class="cell"></td>
+        <td id="cell5" class="cell"></td>
+      </tr>
+      <tr>
+        <td id="cell6" class="cell"></td>
+        <td id="cell7" class="cell"></td>
+        <td id="cell8" class="cell"></td>
+      </tr>
     </table>
     <div id="game-status" class="status"></div>
     <button type="reset" id="reset-btn" class="btn">New Game</button>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
